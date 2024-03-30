@@ -7,36 +7,46 @@
     <div class="col-md-2 mt-4">
         <p class="lead float-right mb-3" style="color: white;">Welcome <%= user.name %></p>
     </div>
-    <div class="col-md-2 mt-4">
-        <a href="/users/logout" class="btn btn-secondary">Logout</a>
+    <div class="toggle-switch mb-4">
+        <input type="checkbox" id="toggle" class="toggle-input" <% if(user.view === "weekly") { %> checked <% } %>>
+        <label for="toggle" class="toggle-label">
+            <% if(user.view === "weekly") { %>
+            Weekly
+            <% } else { %>
+            Daily
+            <% } %>
+        </label>
     </div>
+    <div class="col-md-2 mt-4">
+        <a href="/users/logout" class="btn logout btn-secondary">Logout</a>
+    </div>
+</div>
+<div class="sticky-cont">
+
+    <div class="sticky">
+        <h2>Start with a new habit today!</h2>
+        <form action="/user-view" method="POST" class="habit-header" id="viewForm">
+            
+            <!-- <button type="submit" class="btn btn-primary">Apply</button> -->
+            <input type="hidden" name="view" value="<%= user.view %>">
+        </form>
+        <%- include ("./partials/messages") %>
+        <div class="habit">
+            <form action="/dashboard" method="POST" class="habit-header mb-4">
+                <input type="text" class="input" name="content" placeholder="What's your habit?" required>
+                <button type="submit" class="add-btn btn btn-success"><span class="fas fa-plus"></span></button>
+            </form>
+            <i class="fas fa-check-circle" style="color: rgb(143, 233, 58);"></i>
+            -Done&emsp;&emsp;
+            <i class="fas fa-times-circle" style="color: #E53C37;"></i>
+            -Not Done&emsp;&emsp;
+            <i class="fas fa-minus-circle" style="color: gold;"></i>
+            -Unmarked&emsp;&emsp;
+        </div>
 </div>
 <!-- Habit Container -->
 <div class="habit-container text-center">
-    <h2>Start with a new habit today!</h2>
-    <form action="/user-view" method="POST" class="habit-header">
-        <div class="btn-group mb-4" aria-label="Change View">
-            <% if(user.view === "daily"){ %>
-            <button type="submit" class="btn btn-primary active" aria-pressed="true">Daily</button>
-            <button type="submit" class="btn btn-primary">Weekly</button>
-            <% } else { %>
-            <button type="submit" class="btn btn-primary">Daily</button>
-            <button type="submit" class="btn btn-primary active" aria-pressed="true">Weekly</button>
-            <% } %>
-        </div>
-    </form>
-    <%- include ("./partials/messages") %>
-    <div class="habit">
-        <form action="/dashboard" method="POST" class="habit-header mb-4">
-            <input type="text" name="content" required>
-            <button type="submit" class="add-btn"><span class="fas fa-plus"></span></button>
-        </form>
-        <i class="fas fa-check-circle" style="color: rgb(143, 233, 58);"></i>
-        -Done&emsp;&emsp;
-        <i class="fas fa-times-circle" style="color: #E53C37;"></i>
-        -Not Done&emsp;&emsp;
-        <i class="fas fa-minus-circle" style="color: gold;"></i>
-        -Unmarked&emsp;&emsp;
+  
         <% if(user.view === "daily"){ %>
         <ul class="habit-list">
             <% habits.forEach(details => { let tzoffset = (new Date()).getTimezoneOffset() * 60000, found=false, status='';
@@ -117,3 +127,41 @@
         <% } %>
     </div>
 </div>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const toggleSwitch = document.getElementById("toggle");
+        const toggleLabel = document.querySelector(".toggle-label");
+
+        toggleSwitch.addEventListener("change", function() {
+            const view = toggleSwitch.checked ? "Weekly" : "Daily";
+            toggleLabel.textContent = view;
+            document.querySelector(".habit-header input[name='view']").value = view.toLowerCase();
+            document.getElementById("viewForm").submit();
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const habitContainer = document.querySelector(".habit-container");
+
+        // Function to check if the habit container is empty
+        function checkEmptyContainer() {
+            const habitItems = habitContainer.querySelectorAll(".habit-list-item");
+            if (habitItems.length === 0) {
+                habitContainer.style.display = "none"; // Hide the habit container
+            } else {
+                habitContainer.style.display = "block"; // Show the habit container
+            }
+        }
+
+        // Initial check when the DOM is loaded
+        checkEmptyContainer();
+
+        // Function to observe changes in the habit container and recheck
+        const observer = new MutationObserver(checkEmptyContainer);
+        observer.observe(habitContainer, { childList: true });
+
+    });
+</script>

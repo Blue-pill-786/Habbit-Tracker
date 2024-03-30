@@ -2526,7 +2526,7 @@ pre code {
     background-color  : #fff;
     background-clip   : padding-box;
     border            : 1px solid #ced4da;
-    border-radius     : 0.25rem;
+    border-radius     : 1rem;
     -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     transition        : border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     transition        : border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -3167,7 +3167,7 @@ fieldset:disabled a.btn {
 .btn-secondary {
     color           : #222;
     background-color: #aaa;
-    border-color    : #aaa
+    border-color    : #aaa;
 }
 
 .btn-secondary:hover {
@@ -3809,7 +3809,8 @@ fieldset:disabled a.btn {
 
 .btn-block {
     display: block;
-    width  : 100%
+    width  : 100%;
+    border-radius: 1rem;
 }
 
 .btn-block+.btn-block {
@@ -5614,7 +5615,8 @@ input[type="button"].btn-block {
     -ms-flex        : 1 1 auto;
     flex            : 1 1 auto;
     min-height      : 1px;
-    padding         : 1.25rem
+    padding         : 1.25rem;
+    border-radius: 100px;
 }
 
 .card-title {

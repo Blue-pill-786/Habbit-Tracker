@@ -4,20 +4,18 @@
   "description": "A simple habit tracking app based on NodeJS + EJS for user habit management on daily and weekly basis.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "dev": "nodemon app.js",
+    "start": "nodemon index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rahulsups/habit-tracker.git"
+    "url": ""
   },
-  "author": "Rahul",
+  "author": "Ubair",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/rahulsups/habit-tracker/issues"
-  },
-  "homepage": "https://github.com/rahulsups/habit-tracker#readme",
+  
+  "homepage": "",
   "dependencies": {
     "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",

@@ -1,3 +1,3 @@
 module.exports = {
-    MongoURI: 'mongodb://127.0.0.1:27017/habit'    
+    MongoURI: 'mongodb+srv://ubairwani:1KNqWB3VZhhbCMfG@cluster0.xyx9a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'    
 }
