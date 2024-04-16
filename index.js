@@ -4,7 +4,7 @@ const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
-
+require('dotenv').config();
 const app = express();
 
 //-----DB Config---------//
@@ -46,8 +46,8 @@ app.use(function (req, res, next) {
 });
 
 //-----Routes---------//
-app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
+app.use('/', require('./routes/index.js'));
+app.use('/users', require('./routes/users.js'));
 
 const PORT = process.env.PORT || 3000;
 

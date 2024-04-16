@@ -231,3 +231,31 @@ body {
     height: 60px;
     
 }
+/* For small screens (up to 600px) */
+@media only screen and (max-width: 600px) {
+    .habit-container {
+        width: 90%;
+        max-width: none;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .habit-container input {
+        width: 100%;
+    }
+
+    .habit-list-item {
+        flex-direction: column;
+        margin-left: 0;
+    }
+    
+    .habit-list-item input {
+        margin: 10px 0;
+    }
+
+    .toggle-label {
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+}

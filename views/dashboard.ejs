@@ -33,7 +33,7 @@
         <%- include ("./partials/messages") %>
         <div class="habit">
             <form action="/dashboard" method="POST" class="habit-header mb-4">
-                <input type="text" class="input" name="content" placeholder="What's your habit?" required>
+                <input type="text" class="input" name="content" placeholder="What's your habit?" required >
                 <button type="submit" class="add-btn btn btn-success"><span class="fas fa-plus"></span></button>
             </form>
             <i class="fas fa-check-circle" style="color: rgb(143, 233, 58);"></i>
@@ -134,17 +134,15 @@
     document.addEventListener("DOMContentLoaded", function() {
         const toggleSwitch = document.getElementById("toggle");
         const toggleLabel = document.querySelector(".toggle-label");
+        const habitContainer = document.querySelector(".habit-container");
 
+        // Toggle switch event listener
         toggleSwitch.addEventListener("change", function() {
             const view = toggleSwitch.checked ? "Weekly" : "Daily";
             toggleLabel.textContent = view;
             document.querySelector(".habit-header input[name='view']").value = view.toLowerCase();
             document.getElementById("viewForm").submit();
         });
-    });
-
-    document.addEventListener("DOMContentLoaded", function() {
-        const habitContainer = document.querySelector(".habit-container");
 
         // Function to check if the habit container is empty
         function checkEmptyContainer() {
@@ -162,6 +160,5 @@
         // Function to observe changes in the habit container and recheck
         const observer = new MutationObserver(checkEmptyContainer);
         observer.observe(habitContainer, { childList: true });
-
     });
 </script>
