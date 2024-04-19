@@ -1,13 +1,16 @@
 # Habit Tracker App
+
 > A habit tracking app that will help you to create and maintain an awesome daily and weekly routine, which is one of the most powerful tools for achieving your goals and sending your life into an upwards spiral.
 
 ## Technologies Used
+
 1.  NodeJS
 2.  Express
 3.  EJS
 4.  MongoDB
 
 ## Prerequisites
+
 - MongoDB
 - Git
 - NodeJS
@@ -59,3 +62,14 @@ habit-tracker <br>
 ├── package.json <br>
 ├── package-lock.json <br>
 └── README.md <br>
+
+Contributing
+If you'd like to contribute to Habit Tracker, please follow these steps:
+
+Fork the repository.
+Create a new branch for your feature or bug fix: git checkout -b feature/new-feature.
+Commit your changes: git commit -am 'Add new feature'.
+Push to the branch: git push origin feature/new-feature.
+Submit a pull request.
+License
+This project is licensed under the MIT License. See the LICENSE file for details
