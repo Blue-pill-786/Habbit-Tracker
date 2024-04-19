@@ -3,6 +3,14 @@
 const User = require('../models/User.js');
 const Habit = require('../models/Habit.js');
 var email="";
+
+const options = {
+    timeZone: 'Asia/Kolkata', // Indian timezone
+    // year: 'numeric',
+    month: 'short', // Display month in abbreviated format (e.g., Jan, Feb)
+    day: '2-digit'
+};
+
 exports.getWelcome = async(req,res)=>{
     // console.log("request",req.user, req.email)
     res.render('welcome');
@@ -16,10 +24,11 @@ exports.getDashboard = async (req, res) => {
         
         // console.log("request",req.user, req.email, req.query.user, user, habits)
         const days = [];
-        for (let i = 0; i < 7; i++) {
-            days.push(getDate(i));
+        for (let i = 6; i >= 0; i--) {
+            const day = getDate(i); // Get the day object for index i
+            days.push(day); // Push the day object into the days array
         }
-
+        
         res.render('dashboard', { habits, user, days });
     } catch (err) {
         console.error(err);
@@ -29,8 +38,9 @@ exports.getDashboard = async (req, res) => {
 
 function getDate(n) {
     let d = new Date();
-    d.setDate(d.getDate() + n);
-    const newDate = d.toLocaleDateString('pt-br').split('/').reverse().join('-');
+    d.setDate(d.getDate() - n);
+   
+    const newDate = d.toLocaleDateString('en-US', options);
     let day;
     switch (d.getDay()) {
         case 0: day = 'Sun'; break;
@@ -64,11 +74,7 @@ exports.changeView = async (req, res) => {
 
 exports.addHabit = async (req, res) => {
     try {
-        // Access user information from req.user
-       
-
-
-        // Access habit content from req.body
+      
         const { content } = req.body;
 
         // Check if the email is provided
